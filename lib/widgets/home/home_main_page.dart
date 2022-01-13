@@ -59,9 +59,9 @@ class _HomePageState extends State<HomePage> {
             expandedHeight: 120,
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
+                padding: EdgeInsets.only(top: 50.0),
+                margin: EdgeInsets.symmetric(horizontal: 12.0),
                 alignment: Alignment.center,
-                padding: EdgeInsets.only(
-                    top: 80.0, bottom: 20.0, left: 10.0, right: 10.0),
                 child: TextField(
                   controller: _editingController,
                   style: TextStyle(color: Colors.white, letterSpacing: 2.0),
@@ -82,9 +82,6 @@ class _HomePageState extends State<HomePage> {
                               BorderSide(color: Color(0xFFf9f7f7), width: 1.0),
                           borderRadius: BorderRadius.circular(26.0))),
                   onChanged: (value) {
-                    // setState(() {
-                    //   getvalue = value;
-                    // });
                     _provider.setSearchString = value;
                   },
                 ),
@@ -130,7 +127,7 @@ class _HomePageState extends State<HomePage> {
                                   letterSpacing: 1,
                                   fontWeight: FontWeight.bold)),
                         ),
-                        Text(_provider.getsearchString.toString(),
+                        Text('AC',
                             style: TextStyle(
                                 fontSize: 15,
                                 letterSpacing: 1,

@@ -34,6 +34,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     final _productPrice = _product.first.price - _productDiscount;
     return Scaffold(
       bottomNavigationBar: Container(
+        padding: EdgeInsets.only(bottom: 6.0, top: 6.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -76,9 +77,12 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   image: NetworkImage(_product.first.imageUrl)),
             ),
             actions: [
-              IconButton(
-                onPressed: () {},
-                icon: Icon(
+              TextButton(
+                style: TextButton.styleFrom(alignment: Alignment.centerLeft),
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/my-cart');
+                },
+                child: Icon(
                   Icons.shopping_bag_outlined,
                   color: Colors.grey.shade700,
                 ),

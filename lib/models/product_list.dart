@@ -1,4 +1,6 @@
+import 'dart:collection';
 import 'dart:ffi';
+import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:shop_app/models/product.dart';
@@ -6,221 +8,377 @@ import 'package:shop_app/models/product.dart';
 class ProductProvider with ChangeNotifier {
   final List<Product> _productList = [
     Product(
-        productId: '022',
-        name: 'Ipad Pro 11',
-        price: 800.0,
-        discount: 20.0,
-        categoryName: 'gadgets',
-        subCategoryName: 'phones and tabs',
-        brandName: 'Apple',
+        productId: '001',
+        name: 'Vintage TV',
+        price: 250.0,
+        discount: 50.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Unknown',
         warrenty: '2 years',
         imageUrl:
-            'https://images.unsplash.com/photo-1542751110-97427bbecf20?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1084&q=80',
-        productDetails: 'Best Tablet'),
+            'https://media.istockphoto.com/photos/vintage-television-picture-id96203609',
+        productDetails: 'Old Television'),
+    Product(
+        productId: '002',
+        name: 'Vintage TV 02',
+        price: 250.0,
+        discount: 50.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Unknown',
+        warrenty: '2 years',
+        imageUrl:
+            'https://media.istockphoto.com/photos/vintage-television-picture-id1140991929',
+        productDetails: 'Old Television'),
+    Product(
+        productId: '003',
+        name: 'Sony TV',
+        price: 450.0,
+        discount: 30.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Sony',
+        warrenty: '5 years',
+        imageUrl:
+            'https://media.istockphoto.com/photos/room-modern-minimalist-living-room-with-flat-tv-picture-id1281896445',
+        productDetails: 'Smart Television'),
+    Product(
+        productId: '004',
+        name: 'Sony TV 2',
+        price: 450.0,
+        discount: 30.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Sony',
+        warrenty: '5 years',
+        imageUrl:
+            'https://media.istockphoto.com/photos/on-the-white-wall-in-living-room-with-armchairminimal-design-picture-id1279726732',
+        productDetails: 'Smart Television'),
+    Product(
+        productId: '005',
+        name: 'Sony TV 32',
+        price: 450.0,
+        discount: 30.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Sony',
+        warrenty: '5 years',
+        imageUrl:
+            'https://media.istockphoto.com/photos/mockup-a-tv-wall-mounted-on-cabinet-in-a-living-room-room-with-a-picture-id1320870076',
+        productDetails: 'Non Smart Television'),
+    Product(
+        productId: '006',
+        name: 'Vision TV 32',
+        price: 350.0,
+        discount: 30.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Vision',
+        warrenty: '5 years',
+        imageUrl:
+            'https://media.istockphoto.com/photos/smart-tv-mockup-on-zen-living-room-with-decoraion-minimal-style-3d-picture-id1162698554',
+        productDetails: 'Non Smart Television'),
+    Product(
+        productId: '007',
+        name: 'Smart TV Box',
+        price: 100.0,
+        discount: 10.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Unknown',
+        warrenty: '2 years',
+        imageUrl:
+            'https://media.istockphoto.com/photos/modern-tv-on-living-room-picture-id1328642672',
+        productDetails: 'TV Box'),
+    Product(
+        productId: '008',
+        name: 'Vision Refrigerator',
+        price: 650.0,
+        discount: 50.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Vision',
+        warrenty: '2 years',
+        imageUrl:
+            'https://media.istockphoto.com/photos/vintage-television-picture-id96203609',
+        productDetails: 'Refrigerator'),
+    Product(
+        productId: '009',
+        name: 'Glass Refrigerator',
+        price: 550.0,
+        discount: 50.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Vision',
+        warrenty: '2 years',
+        imageUrl:
+            'https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=726&q=80',
+        productDetails: 'Refrigerator'),
+    Product(
+        productId: '010',
+        name: 'Kitchen Sets',
+        price: 650.0,
+        discount: 50.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Vision',
+        warrenty: '2 years',
+        imageUrl:
+            'https://images.unsplash.com/photo-1588854337048-44569c79c614?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+        productDetails: 'Refrigerator and others'),
+    Product(
+        productId: '011',
+        name: 'Refrigerator',
+        price: 250.0,
+        discount: 50.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Unknown',
+        warrenty: '2 years',
+        imageUrl:
+            'https://images.unsplash.com/photo-1536353284924-9220c464e262?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80',
+        productDetails: 'Old Refrigerator'),
+    Product(
+        productId: '012',
+        name: 'Refrigerator',
+        price: 350.0,
+        discount: 50.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Unknown',
+        warrenty: '2 years',
+        imageUrl:
+            'https://images.unsplash.com/photo-1585338667391-5b279a0c5eb8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+        productDetails: 'Old Refrigerator'),
+    Product(
+        productId: '013',
+        name: 'DJI Mavic',
+        price: 850.0,
+        discount: 50.0,
+        categoryName: 'electronics',
+        subCategoryName: 'robots',
+        brandName: 'DJI',
+        warrenty: '2 years',
+        imageUrl:
+            'https://images.unsplash.com/photo-1524143986875-3b098d78b363?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+        productDetails: 'Heavy Drone'),
+    Product(
+        productId: '014',
+        name: 'DJI Mavic Mini',
+        price: 550.0,
+        discount: 50.0,
+        categoryName: 'electronics',
+        subCategoryName: 'robots',
+        brandName: 'DJI',
+        warrenty: '2 years',
+        imageUrl:
+            'https://images.unsplash.com/photo-1528158477878-c8036dc3c31a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=855&q=80',
+        productDetails: 'Drone'),
+    Product(
+        productId: '015',
+        name: 'DJI Mavic MINI2',
+        price: 350.0,
+        discount: 20.0,
+        categoryName: 'electronics',
+        subCategoryName: 'robots',
+        brandName: 'DJI',
+        warrenty: '2 years',
+        imageUrl:
+            'https://images.unsplash.com/photo-1528159190360-70d4f914fee1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+        productDetails: 'Drone'),
+    Product(
+        productId: '016',
+        name: 'DJI Mavic 2',
+        price: 450.0,
+        discount: 20.0,
+        categoryName: 'electronics',
+        subCategoryName: 'robots',
+        brandName: 'DJI',
+        warrenty: '2 years',
+        imageUrl:
+            'https://images.unsplash.com/photo-1514043454212-14c181f46583?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80',
+        productDetails: 'Drone'),
+    Product(
+        productId: '017',
+        name: 'DJI Mavic 3',
+        price: 450.0,
+        discount: 20.0,
+        categoryName: 'electronics',
+        subCategoryName: 'robots',
+        brandName: 'DJI',
+        warrenty: '2 years',
+        imageUrl:
+            'https://images.unsplash.com/photo-1514043133987-e4801c95b2c8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=955&q=80',
+        productDetails: 'Drone'),
+    Product(
+        productId: '018',
+        name: 'Small Freezer',
+        price: 250.0,
+        discount: 50.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Unknown',
+        warrenty: '2 years',
+        imageUrl:
+            'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+        productDetails: 'Old Freezer'),
+    Product(
+        productId: '019',
+        name: 'Oven and Coffee Maker Combo',
+        price: 200.0,
+        discount: 50.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Unknown',
+        warrenty: '2 years',
+        imageUrl:
+            'https://images.unsplash.com/photo-1586208958839-06c17cacdf08?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=965&q=80',
+        productDetails: 'Kitchen Item'),
+    Product(
+        productId: '020',
+        name: 'Oven',
+        price: 200.0,
+        discount: 50.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Unknown',
+        warrenty: '2 years',
+        imageUrl:
+            'https://media.istockphoto.com/photos/modern-microwave-oven-picture-id139406154',
+        productDetails: 'Kitchen Item'),
+    Product(
+        productId: '021',
+        name: 'Vintage TV',
+        price: 250.0,
+        discount: 50.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Unknown',
+        warrenty: '2 years',
+        imageUrl:
+            'https://media.istockphoto.com/photos/vintage-television-picture-id96203609',
+        productDetails: 'Old Television'),
+    Product(
+        productId: '022',
+        name: 'Smart Oven',
+        price: 300.0,
+        discount: 50.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Unknown',
+        warrenty: '2 years',
+        imageUrl:
+            'https://media.istockphoto.com/photos/microwave-isolated-on-white-background-picture-id1198611365',
+        productDetails: 'Kitchen Item'),
     Product(
         productId: '023',
-        name: 'Ipad 9th Gen',
-        price: 300.0,
-        discount: 0.0,
-        categoryName: 'gadgets',
-        subCategoryName: 'phones and tabs',
-        brandName: 'Apple',
+        name: 'Microwave Oven',
+        price: 350.0,
+        discount: 30.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Unknown',
         warrenty: '2 years',
         imageUrl:
-            'https://images.unsplash.com/photo-1533310266094-8898a03807dd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-        productDetails: 'Best Tablet'),
+            'https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=876&q=80',
+        productDetails: 'Kitchen Item'),
     Product(
         productId: '024',
-        name: 'Ipad 8th Gen',
-        price: 270.0,
-        discount: 0.0,
-        categoryName: 'gadgets',
-        subCategoryName: 'phones and tabs',
-        brandName: 'Apple',
+        name: 'Washing Machine',
+        price: 250.0,
+        discount: 50.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Unknown',
         warrenty: '2 years',
         imageUrl:
-            'https://images.unsplash.com/photo-1557825835-b4527f242af7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-        productDetails: 'Best Tablet'),
+            'https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+        productDetails: 'Best Washing Machine'),
     Product(
         productId: '025',
-        name: 'iPhone 11 Pro ',
-        price: 600.0,
-        discount: 20.0,
-        categoryName: 'gadgets',
-        subCategoryName: 'phones and tabs',
-        brandName: 'Apple',
+        name: 'Washing Machine 2',
+        price: 150.0,
+        discount: 50.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Unknown',
         warrenty: '2 years',
         imageUrl:
-            'https://images.unsplash.com/photo-1574763546929-db0ab5c5e4b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80',
-        productDetails: 'Best Phone'),
+            'https://images.unsplash.com/photo-1604335398557-3f39109c7b4c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+        productDetails: 'Washing Machine'),
     Product(
         productId: '026',
-        name: 'Amazon Echo Dot',
-        price: 150.0,
-        discount: 20.0,
-        categoryName: 'gadgets',
-        subCategoryName: 'smart device',
-        brandName: 'Amazon',
+        name: 'Washing Machine Mini',
+        price: 250.0,
+        discount: 50.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Unknown',
         warrenty: '2 years',
         imageUrl:
-            'https://images.unsplash.com/photo-1568910748155-01ca989dbdd6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-        productDetails: 'Smart Audio Device'),
+            'https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80',
+        productDetails: 'Best Washing Machine'),
     Product(
         productId: '027',
-        name: 'Dell XPS',
-        price: 1800.0,
-        discount: 120.0,
-        categoryName: 'gadgets',
-        subCategoryName: 'PC and Mac',
-        brandName: 'Dell',
+        name: 'Washing Machine Mini2',
+        price: 250.0,
+        discount: 50.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Unknown',
         warrenty: '2 years',
         imageUrl:
-            'https://images.unsplash.com/photo-1595303526913-c7037797ebe7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1229&q=80',
-        productDetails: 'Best Laptop'),
+            'https://images.unsplash.com/photo-1626806819282-2c1dc01a5e0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+        productDetails: 'Best Washing Machine'),
     Product(
         productId: '028',
-        name: 'iMac',
-        price: 1800.0,
-        discount: 20.0,
-        categoryName: 'gadgets',
-        subCategoryName: 'PC and Mac',
-        brandName: 'Apple',
+        name: 'Washing Machine Mini3',
+        price: 250.0,
+        discount: 50.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Unknown',
         warrenty: '2 years',
         imageUrl:
-            'https://images.unsplash.com/photo-1547043848-d94c4ea5adc5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80',
-        productDetails: 'Best All in on PC'),
+            'https://images.unsplash.com/photo-1622473590925-e3616c0a41bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=692&q=80',
+        productDetails: 'Best Washing Machine'),
     Product(
         productId: '029',
-        name: 'Dell XPS 13',
-        price: 800.0,
-        discount: 10.0,
-        categoryName: 'gadgets',
-        subCategoryName: 'PC and Mac',
-        brandName: 'Dell',
+        name: 'Wood Choper',
+        price: 150.0,
+        discount: 20.0,
+        categoryName: 'electronics',
+        subCategoryName: 'robots',
+        brandName: 'Unknown',
         warrenty: '2 years',
         imageUrl:
-            'https://images.unsplash.com/photo-1595087873528-1fe582a3b302?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80',
-        productDetails: 'Best Laptop'),
+            'https://images.unsplash.com/photo-1505798577917-a65157d3320a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
+        productDetails: 'Best Choper'),
     Product(
         productId: '030',
-        name: 'MacBook Pro',
-        price: 1800.0,
+        name: 'Drill Mechine',
+        price: 120.0,
         discount: 20.0,
-        categoryName: 'gadgets',
-        subCategoryName: 'PC and Mac',
-        brandName: 'Apple',
+        categoryName: 'electronics',
+        subCategoryName: 'robots',
+        brandName: 'Unknown',
         warrenty: '2 years',
         imageUrl:
-            'https://images.unsplash.com/photo-1595066349400-7ebe04391d26?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-        productDetails: 'Best Laptop'),
+            'https://images.unsplash.com/photo-1518709414768-a88981a4515d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80',
+        productDetails: 'Best Drill Mechine'),
     Product(
         productId: '031',
-        name: 'HomePod Mini',
-        price: 350.0,
-        discount: 20.0,
-        categoryName: 'gadgets',
-        subCategoryName: 'smart device',
-        brandName: 'Apple',
-        warrenty: '2 years',
-        imageUrl:
-            'https://images.unsplash.com/photo-1529359744902-86b2ab9edaea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-        productDetails: 'Smart Audio Device'),
-    Product(
-        productId: '032',
-        name: 'Google Home',
-        price: 350.0,
-        discount: 20.0,
-        categoryName: 'gadgets',
-        subCategoryName: 'smart device',
-        brandName: 'Google',
-        warrenty: '2 years',
-        imageUrl:
-            'https://images.unsplash.com/photo-1530546171585-cc042ea5d7ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=936&q=80',
-        productDetails: 'Smart Audio Device'),
-    Product(
-        productId: '033',
-        name: 'iPhone 12 Pro max',
-        price: 800.0,
-        discount: 20.0,
-        categoryName: 'gadgets',
-        subCategoryName: 'phones and tabs',
-        brandName: 'Apple',
-        warrenty: '2 years',
-        imageUrl:
-            'https://images.unsplash.com/photo-1598061403733-a0d8eb6bd569?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-        productDetails: 'Best Phone'),
-    Product(
-        productId: '034',
-        name: 'iPhone SE 2020',
-        price: 400.0,
-        discount: 20.0,
-        categoryName: 'gadgets',
-        subCategoryName: 'phones and tabs',
-        brandName: 'Apple',
-        warrenty: '2 years',
-        imageUrl:
-            'https://images.unsplash.com/photo-1606293459339-aa5d34a7b0e1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1031&q=80',
-        productDetails: 'Best Phone'),
-    Product(
-        productId: '035',
-        name: 'iPhone 7',
-        price: 400.0,
-        discount: 20.0,
-        categoryName: 'gadgets',
-        subCategoryName: 'phones and tabs',
-        brandName: 'Apple',
-        warrenty: '2 years',
-        imageUrl:
-            'https://images.unsplash.com/photo-1604548530945-fbdce3e76bc4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
-        productDetails: 'Best Phone'),
-    Product(
-        productId: '036',
-        name: 'Pixel 3',
-        price: 500.0,
-        discount: 20.0,
-        categoryName: 'gadgets',
-        subCategoryName: 'phones and tabs',
-        brandName: 'Google',
-        warrenty: '2 years',
-        imageUrl:
-            'https://images.unsplash.com/photo-1588858865445-03381e156752?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-        productDetails: 'Best Phone'),
-    Product(
-        productId: '037',
-        name: 'Ipod',
-        price: 300.0,
-        discount: 20.0,
-        categoryName: 'gadgets',
-        subCategoryName: 'audio device',
-        brandName: 'Apple',
-        warrenty: '2 years',
-        imageUrl:
-            'https://images.unsplash.com/photo-1511367734837-f2956f0d8020?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1105&q=80',
-        productDetails: 'Best Walkman'),
-    Product(
-        productId: '038',
-        name: 'JBL 3',
+        name: 'Washing Machine',
         price: 250.0,
-        discount: 0.0,
-        categoryName: 'gadgets',
-        subCategoryName: 'audio device',
-        brandName: 'JBL',
+        discount: 50.0,
+        categoryName: 'electronics',
+        subCategoryName: 'home appliance',
+        brandName: 'Unknown',
         warrenty: '2 years',
         imageUrl:
-            'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-        productDetails: 'Best Sounding Headsets'),
-    Product(
-        productId: '022',
-        name: 'Ipad Pro 11',
-        price: 800.0,
-        discount: 20.0,
-        categoryName: 'gadgets',
-        subCategoryName: 'phones and tabs',
-        brandName: 'Apple',
-        warrenty: '2 years',
-        imageUrl:
-            'https://images.unsplash.com/photo-1542751110-97427bbecf20?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1084&q=80',
-        productDetails: 'Best Tablet'),
+            'https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+        productDetails: 'Best Washing Machine'),
   ];
   int _crossAxisCount = 2;
   double _expandedHeight = 280;
@@ -251,34 +409,21 @@ class ProductProvider with ChangeNotifier {
 
   get getsearchString => _searchString;
 
-  final List<Product> _searchProduct = [];
-  productSearch() {
-    _productList.map((e) {
-      if (e.name == 'Ipad Pro 11') {
-        _searchProduct.add(e);
-      }
-    });
-
-    // _productList.where((element) => element.name.contains('Ipad Pro 11'));
-    // _productList.forEach((element) {
-    //   // if (element.name
-    //   //     .toLowerCase()
-    //   //     .contains(getsearchString!.toLowerCase().toString())) {
-    //   //   _searchProduct.add(element);
-    //   // }
-    //   if (element.name == 'Ipad Pro 11') {
-    //     _searchProduct.add(element);
-    //   }
-    // });
-    notifyListeners();
-  }
-
-  // get products {
-  //   if (_searchString == null) {
-  //     return [..._productList];
-  //   }
-  //   return [..._searchProduct];
-  // }
-  List<Product> get products => _productList;
-  List<Product> get searchproducts => _searchProduct;
+  UnmodifiableListView<Product> get products => _searchString == null
+      ? UnmodifiableListView(_productList)
+      : UnmodifiableListView(_productList.where(
+          (element) =>
+              element.name
+                  .toLowerCase()
+                  .contains(_searchString!.toLowerCase().toString()) ||
+              element.brandName
+                  .toLowerCase()
+                  .contains(_searchString!.toLowerCase().toString()) ||
+              element.price
+                  .toString()
+                  .contains(_searchString!.toLowerCase().toString()) ||
+              element.discount
+                  .toString()
+                  .contains(_searchString!.toLowerCase().toString()),
+        ));
 }

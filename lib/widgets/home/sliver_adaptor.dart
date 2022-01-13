@@ -20,7 +20,7 @@ class _HomeSliverAdapterState extends State<HomeSliverAdapter> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              child: Text('total (4)'),
+              child: Text('total ( ${_provider.products.length} )'),
             ),
             Container(
               child: Row(

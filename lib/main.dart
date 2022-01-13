@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shop_app/models/product_list.dart';
 import 'package:shop_app/widgets/details/details_main.dart';
 import 'package:shop_app/widgets/home/home_main_page.dart';
+import 'package:shop_app/widgets/productCart/cart.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,6 +26,7 @@ class _MyAppState extends State<MyApp> {
         home: HomePage(),
         routes: {
           '/product-details': (context) => const ProductDetailsPage(),
+          '/my-cart': (context) => const MyCart(),
         },
       ),
     );
