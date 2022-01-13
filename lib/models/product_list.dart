@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:shop_app/models/product.dart';
 
@@ -241,5 +243,42 @@ class ProductProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  String? _searchString;
+  set setSearchString(String data) {
+    _searchString = data;
+    notifyListeners();
+  }
+
+  get getsearchString => _searchString;
+
+  final List<Product> _searchProduct = [];
+  productSearch() {
+    _productList.map((e) {
+      if (e.name == 'Ipad Pro 11') {
+        _searchProduct.add(e);
+      }
+    });
+
+    // _productList.where((element) => element.name.contains('Ipad Pro 11'));
+    // _productList.forEach((element) {
+    //   // if (element.name
+    //   //     .toLowerCase()
+    //   //     .contains(getsearchString!.toLowerCase().toString())) {
+    //   //   _searchProduct.add(element);
+    //   // }
+    //   if (element.name == 'Ipad Pro 11') {
+    //     _searchProduct.add(element);
+    //   }
+    // });
+    notifyListeners();
+  }
+
+  // get products {
+  //   if (_searchString == null) {
+  //     return [..._productList];
+  //   }
+  //   return [..._searchProduct];
+  // }
   List<Product> get products => _productList;
+  List<Product> get searchproducts => _searchProduct;
 }

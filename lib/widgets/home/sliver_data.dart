@@ -11,9 +11,11 @@ class SliverProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     final _provider = Provider.of<ProductProvider>(context);
     final _product = _provider.products;
+    final _searchproduct = _provider.searchproducts;
     return SliverGrid(
       delegate: SliverChildBuilderDelegate(
         (context, index) => ProductCard(
+          productId: _product[index].productId,
           imageHeight: _provider.imageHeight,
           productName: _product[index].name,
           brandName: _product[index].brandName,
@@ -21,7 +23,9 @@ class SliverProduct extends StatelessWidget {
           discount: _product[index].discount,
           imageUrl: _product[index].imageUrl,
         ),
-        childCount: _product.length,
+        childCount: _provider.getsearchString == null
+            ? _product.length
+            : _searchproduct.length,
       ),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: _provider.crossAxisCounts,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/models/shop_class.dart';
 
 class ProductCard extends StatelessWidget {
   final double? imageHeight;
@@ -7,9 +8,11 @@ class ProductCard extends StatelessWidget {
   final double price;
   final double discount;
   final String imageUrl;
+  final String productId;
   const ProductCard(
       {Key? key,
       this.imageHeight,
+      required this.productId,
       required this.imageUrl,
       required this.productName,
       required this.brandName,
@@ -24,11 +27,17 @@ class ProductCard extends StatelessWidget {
         child: ListView(
           physics: BouncingScrollPhysics(),
           children: <Widget>[
-            Image(
-              fit: BoxFit.cover,
-              width: MediaQuery.of(context).size.width,
-              height: imageHeight,
-              image: NetworkImage(imageUrl),
+            InkWell(
+              onTap: () {
+                Navigator.of(context).pushNamed('/product-details',
+                    arguments: ProductId(productId: productId));
+              },
+              child: Image(
+                fit: BoxFit.cover,
+                width: MediaQuery.of(context).size.width,
+                height: imageHeight,
+                image: NetworkImage(imageUrl),
+              ),
             ),
             Container(
               padding: EdgeInsets.symmetric(
