@@ -13,18 +13,10 @@ class ProductDetailsPage extends StatefulWidget {
 }
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
-  // Iterable<Product> _productList = [];
-  // void getdata() {
-  //   final arg = ModalRoute.of(context)!.settings.arguments as ProductId;
-  //   Iterable<Product> product = Provider.of<ProductProvider>(context)
-  //       .products
-  //       .where((element) => element.productId == arg.productId);
-  //   _productList = product;
-  // }
-
   @override
   Widget build(BuildContext context) {
     final arg = ModalRoute.of(context)!.settings.arguments as ProductId;
+
     Iterable<Product> _product = Provider.of<ProductProvider>(context)
         .products
         .where((element) => element.productId == arg.productId);

@@ -10,6 +10,7 @@ class Product {
   final String imageUrl;
   final bool productStock;
   final String productDetails;
+
   Product({
     required this.productId,
     required this.name,

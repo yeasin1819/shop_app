@@ -1,6 +1,6 @@
 import 'dart:collection';
-import 'dart:ffi';
-import 'dart:math';
+// import 'dart:ffi';
+// import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:shop_app/models/product.dart';
@@ -408,7 +408,13 @@ class ProductProvider with ChangeNotifier {
   }
 
   get getsearchString => _searchString;
+  dynamic _provider;
 
+  set providerData(dynamic data) {
+    _provider = data;
+  }
+
+  get provider => _provider;
   UnmodifiableListView<Product> get products => _searchString == null
       ? UnmodifiableListView(_productList)
       : UnmodifiableListView(_productList.where(
