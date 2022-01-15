@@ -36,7 +36,7 @@ class SportProductCard extends StatelessWidget {
                 fit: BoxFit.cover,
                 width: MediaQuery.of(context).size.width,
                 height: imageHeight,
-                image: NetworkImage(imageUrl),
+                image: AssetImage(imageUrl.toString()),
               ),
             ),
             Container(

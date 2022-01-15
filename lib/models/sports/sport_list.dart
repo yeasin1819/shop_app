@@ -24,7 +24,7 @@ class SportProvider with ChangeNotifier {
                   .toString()
                   .contains(_searchString!.toLowerCase().toString()),
         ));
-  List<Sport> _products = [
+  final List<Sport> _products = [
     Sport(
       gametype: "Football",
       productId: "SPF001",

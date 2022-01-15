@@ -16,11 +16,10 @@ class FirnitureHomePage extends StatefulWidget {
 
 class _FirnitureHomePageState extends State<FirnitureHomePage> {
   String? getvalue;
-  TextEditingController _editingController = TextEditingController();
+  final TextEditingController _editingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final _provider =
-        Provider.of<ProductProvider>(context, listen: false).provider;
+    final _provider = Provider.of<FirnitureProvider>(context, listen: false);
     return Scaffold(
       drawer: HomeDrawer(),
       body: CustomScrollView(
@@ -82,7 +81,7 @@ class _FirnitureHomePageState extends State<FirnitureHomePage> {
                   Container(
                     padding: EdgeInsets.symmetric(vertical: 10.0),
                     child: Row(
-                      children: [
+                      children: const [
                         Text(
                           'Home ',
                           style: TextStyle(
@@ -98,24 +97,24 @@ class _FirnitureHomePageState extends State<FirnitureHomePage> {
                                   letterSpacing: 1,
                                   fontWeight: FontWeight.bold)),
                         ),
-                        Text(' Electronices ',
+                        Text(' Firniture ',
                             style: TextStyle(
                                 fontSize: 15,
                                 letterSpacing: 1,
                                 fontWeight: FontWeight.bold)),
-                        SizedBox(
-                          width: 10,
-                          child: Text('/',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  letterSpacing: 1,
-                                  fontWeight: FontWeight.bold)),
-                        ),
-                        Text('AC',
-                            style: TextStyle(
-                                fontSize: 15,
-                                letterSpacing: 1,
-                                fontWeight: FontWeight.bold)),
+                        // SizedBox(
+                        //   width: 10,
+                        //   child: Text('/',
+                        //       style: TextStyle(
+                        //           fontSize: 15,
+                        //           letterSpacing: 1,
+                        //           fontWeight: FontWeight.bold)),
+                        // ),
+                        // Text('AC',
+                        //     style: TextStyle(
+                        //         fontSize: 15,
+                        //         letterSpacing: 1,
+                        //         fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
@@ -123,7 +122,9 @@ class _FirnitureHomePageState extends State<FirnitureHomePage> {
               ),
             ),
           ),
-          HomeSliverAdapter(),
+          HomeSliverAdapter(
+            productLength: _provider.products.length,
+          ),
           FirnitureSliverProduct(
             productList: Provider.of<FirnitureProvider>(context).products,
           )

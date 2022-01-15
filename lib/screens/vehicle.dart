@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/models/product_list.dart';
-import 'package:shop_app/models/sports/sport_list.dart';
+
 import 'package:shop_app/models/vehicle/vehicle_list.dart';
 import 'package:shop_app/screens/sliver/vehicle.dart';
 import 'package:shop_app/widgets/home/home_drawer.dart';
 import 'package:shop_app/widgets/home/sliver_adaptor.dart';
-import 'package:shop_app/widgets/home/sliver_data.dart';
 
 class VechileHomePage extends StatefulWidget {
   const VechileHomePage({Key? key}) : super(key: key);
@@ -17,13 +15,12 @@ class VechileHomePage extends StatefulWidget {
 
 class _VechileHomePageState extends State<VechileHomePage> {
   String? getvalue;
-  TextEditingController _editingController = TextEditingController();
+  final TextEditingController _editingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final _provider =
-        Provider.of<ProductProvider>(context, listen: false).provider;
+    final _provider = Provider.of<VehicleProvider>(context, listen: false);
     return Scaffold(
-      drawer: HomeDrawer(),
+      drawer: const HomeDrawer(),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -83,7 +80,7 @@ class _VechileHomePageState extends State<VechileHomePage> {
                   Container(
                     padding: EdgeInsets.symmetric(vertical: 10.0),
                     child: Row(
-                      children: [
+                      children: const [
                         Text(
                           'Home ',
                           style: TextStyle(
@@ -99,24 +96,24 @@ class _VechileHomePageState extends State<VechileHomePage> {
                                   letterSpacing: 1,
                                   fontWeight: FontWeight.bold)),
                         ),
-                        Text(' Electronices ',
+                        Text(' Vehicle ',
                             style: TextStyle(
                                 fontSize: 15,
                                 letterSpacing: 1,
                                 fontWeight: FontWeight.bold)),
-                        SizedBox(
-                          width: 10,
-                          child: Text('/',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  letterSpacing: 1,
-                                  fontWeight: FontWeight.bold)),
-                        ),
-                        Text('AC',
-                            style: TextStyle(
-                                fontSize: 15,
-                                letterSpacing: 1,
-                                fontWeight: FontWeight.bold)),
+                        // SizedBox(
+                        //   width: 10,
+                        //   child: Text('/',
+                        //       style: TextStyle(
+                        //           fontSize: 15,
+                        //           letterSpacing: 1,
+                        //           fontWeight: FontWeight.bold)),
+                        // ),
+                        // Text('AC',
+                        //     style: TextStyle(
+                        //         fontSize: 15,
+                        //         letterSpacing: 1,
+                        //         fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
@@ -124,7 +121,9 @@ class _VechileHomePageState extends State<VechileHomePage> {
               ),
             ),
           ),
-          HomeSliverAdapter(),
+          HomeSliverAdapter(
+            productLength: _provider.products.length,
+          ),
           // SliverProduct(
           //   productList: Provider.of<VehicleProvider>(context).products,
           // )

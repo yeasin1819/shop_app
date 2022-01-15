@@ -17,11 +17,10 @@ class BookHomePage extends StatefulWidget {
 
 class _BookHomePageState extends State<BookHomePage> {
   String? getvalue;
-  TextEditingController _editingController = TextEditingController();
+  final TextEditingController _editingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final _provider =
-        Provider.of<ProductProvider>(context, listen: false).provider;
+    final _provider = Provider.of<BookProvider>(context, listen: false);
     return Scaffold(
       drawer: HomeDrawer(),
       body: CustomScrollView(
@@ -99,24 +98,24 @@ class _BookHomePageState extends State<BookHomePage> {
                                   letterSpacing: 1,
                                   fontWeight: FontWeight.bold)),
                         ),
-                        Text(' Electronices ',
+                        Text(' Book ',
                             style: TextStyle(
                                 fontSize: 15,
                                 letterSpacing: 1,
                                 fontWeight: FontWeight.bold)),
-                        SizedBox(
-                          width: 10,
-                          child: Text('/',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  letterSpacing: 1,
-                                  fontWeight: FontWeight.bold)),
-                        ),
-                        Text('AC',
-                            style: TextStyle(
-                                fontSize: 15,
-                                letterSpacing: 1,
-                                fontWeight: FontWeight.bold)),
+                        // SizedBox(
+                        //   width: 10,
+                        //   child: Text('/',
+                        //       style: TextStyle(
+                        //           fontSize: 15,
+                        //           letterSpacing: 1,
+                        //           fontWeight: FontWeight.bold)),
+                        // ),
+                        // Text('AC',
+                        //     style: TextStyle(
+                        //         fontSize: 15,
+                        //         letterSpacing: 1,
+                        //         fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
@@ -124,7 +123,9 @@ class _BookHomePageState extends State<BookHomePage> {
               ),
             ),
           ),
-          HomeSliverAdapter(),
+          HomeSliverAdapter(
+            productLength: Provider.of<BookProvider>(context).products.length,
+          ),
           BookSliverProduct(
             productList: Provider.of<BookProvider>(context).products,
           )

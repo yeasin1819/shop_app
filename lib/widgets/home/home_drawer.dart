@@ -6,41 +6,42 @@ class HomeDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: Colors.lightGreen.shade700,
       child: ListView(
         children: [
           Container(
             height: 150,
-            color: Colors.orange,
+            color: Colors.lightGreen.shade900,
           ),
-          DrawerContainer(
+          const DrawerContainer(
             buttonString: 'Book',
             routeName: '/book',
           ),
-          DrawerContainer(
+          const DrawerContainer(
             buttonString: 'Gadgets',
             routeName: '/gadgets',
           ),
-          DrawerContainer(
+          const DrawerContainer(
             buttonString: 'Cosmetics',
             routeName: '/cosmetics',
           ),
-          DrawerContainer(
+          const DrawerContainer(
             buttonString: 'Food',
             routeName: '/food',
           ),
-          DrawerContainer(
+          const DrawerContainer(
             buttonString: 'Sport',
             routeName: '/sports',
           ),
-          DrawerContainer(
+          const DrawerContainer(
             buttonString: 'Vehicle',
             routeName: '/vehicle',
           ),
-          DrawerContainer(
+          const DrawerContainer(
             buttonString: 'Fashion',
             routeName: '/fashion',
           ),
-          DrawerContainer(
+          const DrawerContainer(
             buttonString: 'Firniture',
             routeName: '/firniture',
           ),
@@ -61,8 +62,17 @@ class DrawerContainer extends StatelessWidget {
     return Container(
       width: double.infinity,
       alignment: Alignment.centerLeft,
+      padding: EdgeInsets.only(left: 16.0),
+      decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: Colors.white))),
       child: TextButton(
-        child: Text(buttonString.toString()),
+        style: TextButton.styleFrom(
+            alignment: Alignment.centerLeft,
+            fixedSize: Size.fromWidth(MediaQuery.of(context).size.width)),
+        child: Text(
+          buttonString.toString(),
+          style: TextStyle(fontSize: 18, color: Colors.white),
+        ),
         onPressed: () {
           if (routeName != null) {
             Navigator.of(context).pushNamed(routeName!);

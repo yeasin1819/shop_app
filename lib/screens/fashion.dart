@@ -19,8 +19,7 @@ class _FashionHomePageState extends State<FashionHomePage> {
   TextEditingController _editingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final _provider =
-        Provider.of<ProductProvider>(context, listen: false).provider;
+    final _provider = Provider.of<FashionProvider>(context, listen: false);
     return Scaffold(
       drawer: HomeDrawer(),
       body: CustomScrollView(
@@ -98,24 +97,24 @@ class _FashionHomePageState extends State<FashionHomePage> {
                                   letterSpacing: 1,
                                   fontWeight: FontWeight.bold)),
                         ),
-                        Text(' Electronices ',
+                        Text(' Fashion ',
                             style: TextStyle(
                                 fontSize: 15,
                                 letterSpacing: 1,
                                 fontWeight: FontWeight.bold)),
-                        SizedBox(
-                          width: 10,
-                          child: Text('/',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  letterSpacing: 1,
-                                  fontWeight: FontWeight.bold)),
-                        ),
-                        Text('AC',
-                            style: TextStyle(
-                                fontSize: 15,
-                                letterSpacing: 1,
-                                fontWeight: FontWeight.bold)),
+                        // SizedBox(
+                        //   width: 10,
+                        //   child: Text('/',
+                        //       style: TextStyle(
+                        //           fontSize: 15,
+                        //           letterSpacing: 1,
+                        //           fontWeight: FontWeight.bold)),
+                        // ),
+                        // Text('AC',
+                        //     style: TextStyle(
+                        //         fontSize: 15,
+                        //         letterSpacing: 1,
+                        //         fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
@@ -123,7 +122,9 @@ class _FashionHomePageState extends State<FashionHomePage> {
               ),
             ),
           ),
-          HomeSliverAdapter(),
+          HomeSliverAdapter(
+            productLength: _provider.products.length,
+          ),
           FashionSliverProduct(
             productList: Provider.of<FashionProvider>(context).products,
           )

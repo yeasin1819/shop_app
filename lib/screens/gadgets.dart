@@ -5,7 +5,6 @@ import 'package:shop_app/models/product_list.dart';
 import 'package:shop_app/screens/sliver/gadgets.dart';
 import 'package:shop_app/widgets/home/home_drawer.dart';
 import 'package:shop_app/widgets/home/sliver_adaptor.dart';
-import 'package:shop_app/widgets/home/sliver_data.dart';
 
 class GadgetsHomePage extends StatefulWidget {
   const GadgetsHomePage({Key? key}) : super(key: key);
@@ -16,13 +15,12 @@ class GadgetsHomePage extends StatefulWidget {
 
 class _GadgetsHomePageState extends State<GadgetsHomePage> {
   String? getvalue;
-  TextEditingController _editingController = TextEditingController();
+  final TextEditingController _editingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final _provider =
-        Provider.of<ProductProvider>(context, listen: false).provider;
+    final _provider = Provider.of<GadgetsProvider>(context, listen: false);
     return Scaffold(
-      drawer: HomeDrawer(),
+      drawer: const HomeDrawer(),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -82,7 +80,7 @@ class _GadgetsHomePageState extends State<GadgetsHomePage> {
                   Container(
                     padding: EdgeInsets.symmetric(vertical: 10.0),
                     child: Row(
-                      children: [
+                      children: const [
                         Text(
                           'Home ',
                           style: TextStyle(
@@ -98,24 +96,24 @@ class _GadgetsHomePageState extends State<GadgetsHomePage> {
                                   letterSpacing: 1,
                                   fontWeight: FontWeight.bold)),
                         ),
-                        Text(' Electronices ',
+                        Text(' Gadgets ',
                             style: TextStyle(
                                 fontSize: 15,
                                 letterSpacing: 1,
                                 fontWeight: FontWeight.bold)),
-                        SizedBox(
-                          width: 10,
-                          child: Text('/',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  letterSpacing: 1,
-                                  fontWeight: FontWeight.bold)),
-                        ),
-                        Text('AC',
-                            style: TextStyle(
-                                fontSize: 15,
-                                letterSpacing: 1,
-                                fontWeight: FontWeight.bold)),
+                        // SizedBox(
+                        //   width: 10,
+                        //   child: Text('/',
+                        //       style: TextStyle(
+                        //           fontSize: 15,
+                        //           letterSpacing: 1,
+                        //           fontWeight: FontWeight.bold)),
+                        // ),
+                        // Text('AC',
+                        //     style: TextStyle(
+                        //         fontSize: 15,
+                        //         letterSpacing: 1,
+                        //         fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
@@ -123,7 +121,9 @@ class _GadgetsHomePageState extends State<GadgetsHomePage> {
               ),
             ),
           ),
-          HomeSliverAdapter(),
+          HomeSliverAdapter(
+            productLength: _provider.products.length,
+          ),
           GadgetsSliverProduct(
             productList: Provider.of<GadgetsProvider>(context).products,
           )

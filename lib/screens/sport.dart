@@ -15,13 +15,12 @@ class SportHomePage extends StatefulWidget {
 
 class _SportHomePageState extends State<SportHomePage> {
   String? getvalue;
-  TextEditingController _editingController = TextEditingController();
+  final TextEditingController _editingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final _provider =
-        Provider.of<ProductProvider>(context, listen: false).provider;
+    final _provider = Provider.of<SportProvider>(context, listen: false);
     return Scaffold(
-      drawer: HomeDrawer(),
+      drawer: const HomeDrawer(),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -81,7 +80,7 @@ class _SportHomePageState extends State<SportHomePage> {
                   Container(
                     padding: EdgeInsets.symmetric(vertical: 10.0),
                     child: Row(
-                      children: [
+                      children: const [
                         Text(
                           'Home ',
                           style: TextStyle(
@@ -97,24 +96,24 @@ class _SportHomePageState extends State<SportHomePage> {
                                   letterSpacing: 1,
                                   fontWeight: FontWeight.bold)),
                         ),
-                        Text(' Electronices ',
+                        Text(' Sports ',
                             style: TextStyle(
                                 fontSize: 15,
                                 letterSpacing: 1,
                                 fontWeight: FontWeight.bold)),
-                        SizedBox(
-                          width: 10,
-                          child: Text('/',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  letterSpacing: 1,
-                                  fontWeight: FontWeight.bold)),
-                        ),
-                        Text('AC',
-                            style: TextStyle(
-                                fontSize: 15,
-                                letterSpacing: 1,
-                                fontWeight: FontWeight.bold)),
+                        // SizedBox(
+                        //   width: 10,
+                        //   child: Text('/',
+                        //       style: TextStyle(
+                        //           fontSize: 15,
+                        //           letterSpacing: 1,
+                        //           fontWeight: FontWeight.bold)),
+                        // ),
+                        // Text('AC',
+                        //     style: TextStyle(
+                        //         fontSize: 15,
+                        //         letterSpacing: 1,
+                        //         fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
@@ -122,7 +121,9 @@ class _SportHomePageState extends State<SportHomePage> {
               ),
             ),
           ),
-          HomeSliverAdapter(),
+          HomeSliverAdapter(
+            productLength: _provider.products.length,
+          ),
           SportSliverProduct(
             productList: Provider.of<SportProvider>(context).products,
           )

@@ -4,8 +4,9 @@ import 'package:shop_app/models/product_list.dart';
 import 'package:shop_app/widgets/productCart/sport.dart';
 
 class SportSliverProduct extends StatelessWidget {
-  final List? productList;
-  const SportSliverProduct({Key? key, this.productList}) : super(key: key);
+  final List productList;
+  const SportSliverProduct({Key? key, required this.productList})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +25,15 @@ class SportSliverProduct extends StatelessWidget {
         : SliverGrid(
             delegate: SliverChildBuilderDelegate(
                 (context, index) => SportProductCard(
-                      productId: productList![index].productId,
+                      productId: productList[index].productId,
                       imageHeight: _provider.imageHeight,
-                      productName: productList![index].name,
-                      brandName: productList![index].brandName,
-                      price: productList![index].price,
+                      productName: productList[index].name,
+                      brandName: productList[index].brandName,
+                      price: productList[index].price,
                       discount: 0.0,
-                      imageUrl: productList![index].image,
+                      imageUrl: productList[index].image,
                     ),
-                childCount: productList!.length),
+                childCount: productList.length),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: _provider.crossAxisCounts,
               mainAxisSpacing: 5,
