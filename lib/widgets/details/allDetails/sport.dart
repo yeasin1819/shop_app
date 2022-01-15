@@ -9,6 +9,8 @@ import 'package:shop_app/models/shop_class.dart';
 import 'package:shop_app/models/sports/sport.dart';
 import 'package:shop_app/models/sports/sport_list.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
+
 class SportDetailsPage extends StatefulWidget {
   const SportDetailsPage({Key? key}) : super(key: key);
 

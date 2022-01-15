@@ -35,33 +35,25 @@ class _AuthSignInState extends State<AuthSignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Shop App "),
+        centerTitle: true,
+        backgroundColor: Color(0xff0f2625),
+      ),
       body: Center(
         child: Container(
-          margin: EdgeInsets.all(16.0),
           padding: EdgeInsets.all(16.0),
-          decoration: BoxDecoration(
-            color: Colors.grey,
-            borderRadius: BorderRadius.circular(16.0),
-          ),
           child: SingleChildScrollView(
             child: Form(
               key: _keyForm,
               child: Column(
                 children: [
                   TextFormField(
-                    cursorColor: Colors.black,
+                    // cursorColor: Colors.black,
                     decoration: InputDecoration(
                       hintText: 'Email address',
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
+                      border: OutlineInputBorder(),
+                      label: Text("E-mail"),
                     ),
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) {
@@ -79,20 +71,11 @@ class _AuthSignInState extends State<AuthSignIn> {
                   ),
                   TextFormField(
                     obscureText: true,
-                    cursorColor: Colors.black,
                     keyboardType: TextInputType.visiblePassword,
                     decoration: InputDecoration(
-                      hintText: 'Password',
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
+                      hintText: 'Enter Password(8 - Digit)',
+                      label: Text("Password"),
+                      border: OutlineInputBorder(),
                     ),
                     validator: (value) {
                       if (value!.length <= 6 && value.isEmpty) {
@@ -107,15 +90,14 @@ class _AuthSignInState extends State<AuthSignIn> {
                   SizedBox(
                     height: 22.0,
                   ),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        primary: Colors.white,
-                        fixedSize: Size(150, 50)),
+                  FlatButton(
+                    color: Colors.blue,
+                    height: 50,
+                    minWidth: double.infinity,
                     onPressed: signIn,
                     child: Text(
                       'Sign In',
-                      style: TextStyle(fontSize: 16.0),
+                      style: TextStyle(fontSize: 16.0, color: Colors.white),
                     ),
                   ),
                   Container(
@@ -132,7 +114,7 @@ class _AuthSignInState extends State<AuthSignIn> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.of(context).pushNamed('/');
+                            Navigator.of(context).pushNamed('/sign-up');
                           },
                           child: const Text(
                             'sign-up',

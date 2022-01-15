@@ -6,13 +6,31 @@ class HomeDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.lightGreen.shade700,
+      backgroundColor: Color(0xff0f2625),
+
       child: ListView(
         children: [
-          Container(
-            height: 150,
-            color: Colors.lightGreen.shade900,
+          DrawerHeader(
+      decoration: BoxDecoration(
+      ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                    backgroundImage: AssetImage('images/profile.jpg'),
+                    radius: 50.0,
+                  ),
+                     SizedBox(height: 10,),
+                  Text(
+                    'Yeasin Arafat',
+                    style: TextStyle(color: Colors.white, fontSize: 20.0),
+                  ),
+                  
+              ],
+            )
+           
           ),
+       
           const DrawerContainer(
             buttonString: 'Book',
             routeName: '/book',
@@ -54,31 +72,41 @@ class HomeDrawer extends StatelessWidget {
 class DrawerContainer extends StatelessWidget {
   final String buttonString;
   final String? routeName;
+
   const DrawerContainer({Key? key, required this.buttonString, this.routeName})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      alignment: Alignment.centerLeft,
-      padding: EdgeInsets.only(left: 16.0),
-      decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: Colors.white))),
-      child: TextButton(
-        style: TextButton.styleFrom(
-            alignment: Alignment.centerLeft,
-            fixedSize: Size.fromWidth(MediaQuery.of(context).size.width)),
-        child: Text(
-          buttonString.toString(),
-          style: TextStyle(fontSize: 18, color: Colors.white),
+    return GestureDetector(
+      child: Container(
+        width: double.infinity,
+        alignment: Alignment.centerLeft,
+        padding: EdgeInsets.only(left: 16.0),
+        decoration: BoxDecoration(
+            border: Border(bottom: BorderSide(color: Colors.white))),
+        child: TextButton(
+          style: TextButton.styleFrom(
+
+              alignment: Alignment.centerLeft,
+              fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
+
+          ),
+          child: Text(
+            buttonString.toString(),
+            style: TextStyle(fontSize: 18, color: Colors.white),
+
+          ),
+          onPressed: () {
+            if (routeName != null) {
+              Navigator.of(context).pushNamed(routeName!);
+            }
+          },
         ),
-        onPressed: () {
-          if (routeName != null) {
-            Navigator.of(context).pushNamed(routeName!);
-          }
-        },
       ),
+      onTap: () {
+
+      },
     );
   }
 }

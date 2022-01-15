@@ -5,6 +5,8 @@ import 'package:shop_app/models/product.dart';
 import 'package:shop_app/models/product_list.dart';
 import 'package:shop_app/models/shop_class.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
+
 class ProductDetailsPage extends StatefulWidget {
   const ProductDetailsPage({Key? key}) : super(key: key);
 
@@ -64,9 +66,16 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             iconTheme: IconThemeData(color: Colors.grey.shade700),
             expandedHeight: 270,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(_product.first.imageUrl)),
+              background: CachedNetworkImage(
+                imageUrl: _product.first.imageUrl,
+                fit: BoxFit.cover,
+                width: MediaQuery.of(context).size.width,
+                placeholder: (context, url) {
+                  return Image.asset('images/loading.gif');
+                },
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
+              
             ),
             actions: [
               TextButton(

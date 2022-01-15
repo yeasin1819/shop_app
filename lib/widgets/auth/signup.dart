@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/models/auth_provider.dart';
 
-class AtuhSignUp extends StatefulWidget {
+class AuthSignUp extends StatefulWidget {
   @override
-  State<AtuhSignUp> createState() => _AtuhSignUpState();
+  State<AuthSignUp> createState() => _AuthSignUpState();
 }
 
-class _AtuhSignUpState extends State<AtuhSignUp> {
+class _AuthSignUpState extends State<AuthSignUp> {
   // const AtuhSignUp({Key? key}) : super(key: key);
   final _keyform = GlobalKey<FormState>();
 
@@ -28,6 +28,7 @@ class _AtuhSignUpState extends State<AtuhSignUp> {
         _authData['email'].toString(),
         _authData['password'].toString(),
       );
+      Navigator.of(context).pushNamed('/sign-in');
     } else {
       print('password not match');
     }
@@ -38,33 +39,25 @@ class _AtuhSignUpState extends State<AtuhSignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Shop App "),
+        centerTitle: true,
+        backgroundColor: Color(0xff0f2625),
+      ),
       body: Center(
         child: Container(
-          margin: EdgeInsets.all(16.0),
           padding: EdgeInsets.all(16.0),
-          decoration: BoxDecoration(
-            color: Colors.grey,
-            borderRadius: BorderRadius.circular(16.0),
-          ),
+
           child: SingleChildScrollView(
             child: Form(
               key: _keyform,
               child: Column(
                 children: [
                   TextFormField(
-                    cursorColor: Colors.black,
                     decoration: InputDecoration(
                       hintText: 'Email address',
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
+                     label: Text("E-mail"),
+                      border: OutlineInputBorder(),
                     ),
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) {
@@ -82,20 +75,11 @@ class _AtuhSignUpState extends State<AtuhSignUp> {
                   ),
                   TextFormField(
                     obscureText: true,
-                    cursorColor: Colors.black,
                     keyboardType: TextInputType.visiblePassword,
                     decoration: InputDecoration(
                       hintText: 'Password',
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
+                      label: Text("Password"),
+                      border: OutlineInputBorder(),
                     ),
                     validator: (value) {
                       if (value!.length <= 6 && value.isEmpty) {
@@ -112,19 +96,10 @@ class _AtuhSignUpState extends State<AtuhSignUp> {
                   ),
                   TextFormField(
                     obscureText: true,
-                    cursorColor: Colors.black,
                     decoration: InputDecoration(
                       hintText: 'Confirm password',
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
+                      label: Text("Confirm Password"),
+                      border: OutlineInputBorder(),
                     ),
                     keyboardType: TextInputType.visiblePassword,
                     validator: (value) {
@@ -140,15 +115,14 @@ class _AtuhSignUpState extends State<AtuhSignUp> {
                   SizedBox(
                     height: 22.0,
                   ),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        primary: Colors.white,
-                        fixedSize: Size(150, 50)),
+                  FlatButton(
+                    color: Colors.blue,
+                    height: 50,
+                    minWidth: double.infinity,
                     onPressed: signUp,
                     child: Text(
                       'Sign up',
-                      style: TextStyle(fontSize: 16.0),
+                      style: TextStyle(fontSize: 16.0, color: Colors.white),
                     ),
                   ),
                   Container(

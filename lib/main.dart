@@ -62,8 +62,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/home': (context) => AtuhSignUp(),
-        '/': (context) => const HomePage(),
+        '/': (context) => AuthSignIn(),
+        //'/':(context) => HomePage(),
+        '/home': (context) => HomePage(),
         '/product-details': (context) => const ProductDetailsPage(),
         '/product-details-book': (context) => const BookDetailsPage(),
         '/product-details-cosmetic': (context) => const CosmeticDetailsPage(),
@@ -74,6 +75,7 @@ class MyApp extends StatelessWidget {
         '/product-details-sport': (context) => const SportDetailsPage(),
         '/product-details-vehicle': (context) => const VehicleDetailsPage(),
         '/my-cart': (context) => const MyCart(),
+        '/sign-up': (context) => AuthSignUp(),
         '/sign-in': (context) => const AuthSignIn(),
         '/book': (context) => BookHomePage(),
         '/gadgets': (context) => GadgetsHomePage(),
@@ -85,43 +87,5 @@ class MyApp extends StatelessWidget {
         '/firniture': (context) => FirnitureHomePage()
       },
     );
-    // : MaterialApp(
-    //     debugShowCheckedModeBanner: false,
-    //     //home: AtuhSignUp(),
-    //     home: AtuhSignUp(),
-    //     //initialRoute: provider == true ? '/home' : '/',
-    //     routes: {
-    //       //   // '/': (context) => AtuhSignUp(),
-    //       //   // '/home': (context) => const Show(),
-    //       //   '/product-details': (context) => const ProductDetailsPage(),
-    //       //   '/my-cart': (context) => const MyCart(),
-    //       '/sign-in': (context) => AuthSignIn(),
-    //     },
-    //   );
   }
 }
-
-
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     final provider = Provider.of<AuthProvider>(context).isAuth;
-//     //print(provider);
-//     return Consumer<AuthProvider>(
-//       builder: (context, auth, child) => MaterialApp(
-//         debugShowCheckedModeBanner: false,
-//         //home: AtuhSignUp(),
-//         home: auth.isAuth ? HomePage() : AtuhSignUp(),
-//         //initialRoute: auth.isAuth ? '/home' : '/',
-//         routes: {
-//           // '/home': (context) => const HomePage(),
-//           '/product-details': (context) => const ProductDetailsPage(),
-//           '/my-cart': (context) => const MyCart(),
-//           '/sign-in': (context) => AuthSignIn(),
-//           // '/sign-up': (context) => AtuhSignUp()
-//         },
-//       ),
-//     );
-//   }
-// }

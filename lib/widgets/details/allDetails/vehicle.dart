@@ -9,6 +9,8 @@ import 'package:shop_app/models/shop_class.dart';
 import 'package:shop_app/models/vehicle/vehicle.dart';
 import 'package:shop_app/models/vehicle/vehicle_list.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
+
 class VehicleDetailsPage extends StatefulWidget {
   const VehicleDetailsPage({Key? key}) : super(key: key);
 
@@ -68,9 +70,15 @@ class _VehicleDetailsPageState extends State<VehicleDetailsPage> {
             iconTheme: IconThemeData(color: Colors.grey.shade700),
             expandedHeight: 270,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(_product.first.imageUrl)),
+              background: CachedNetworkImage(
+                imageUrl: _product.first.imageUrl,
+                fit: BoxFit.cover,
+                width: MediaQuery.of(context).size.width,
+                placeholder: (context, url) {
+                  return Image.asset('images/loading.gif');
+                },
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
             ),
             actions: [
               TextButton(

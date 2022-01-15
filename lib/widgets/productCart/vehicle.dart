@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/models/shop_class.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
+
 class VehicleProductCard extends StatelessWidget {
   final double? imageHeight;
   final String productName;
@@ -32,11 +34,15 @@ class VehicleProductCard extends StatelessWidget {
                 Navigator.of(context).pushNamed('/product-details-vehicle',
                     arguments: ProductId(productId: productId));
               },
-              child: Image(
+              child: CachedNetworkImage(
+                imageUrl: imageUrl,
                 fit: BoxFit.cover,
                 width: MediaQuery.of(context).size.width,
                 height: imageHeight,
-                image: NetworkImage(imageUrl),
+                placeholder: (context, url) {
+                  return Image.asset('images/loading.gif');
+                },
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
             Container(

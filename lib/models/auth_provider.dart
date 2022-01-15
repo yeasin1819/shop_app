@@ -8,7 +8,7 @@ class AuthProvider with ChangeNotifier {
   DateTime? _expiryDate;
   Future<void> authSignUp(String email, String password) async {
     const url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCO8vSJPA8pXYJxa8ZudMeujVQ8sDHODRs';
+        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCzDCOQB9e3JGHWsvlyzul-swUwAolYbio';
     final response = await http.post(
       Uri.parse(url),
       body: json.encode({
@@ -23,7 +23,7 @@ class AuthProvider with ChangeNotifier {
 
   Future<void> SignIn(String email, String password) async {
     const url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCO8vSJPA8pXYJxa8ZudMeujVQ8sDHODRs';
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCzDCOQB9e3JGHWsvlyzul-swUwAolYbio';
     final response = await http.post(
       Uri.parse(url),
       body: json.encode({
